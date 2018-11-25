@@ -22,7 +22,7 @@ class Number:
         return number_array
         
     def print(self):
-        plt.imshow(self.dataNumber, cmap = 'gray')
+        plt.imshow(self.data, cmap = 'gray')
         plt.show()    
   
     

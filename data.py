@@ -6,7 +6,7 @@ from number import Number
  Clase que representa al conjunto de datos
 """
 
-class dataset:
+class Dataset:
     
     def __init__(self, data_source):
         self.mndata = MNIST(data_source)
@@ -20,19 +20,27 @@ class dataset:
         labelsTesting = self.mndata.load_testing()[1]
         
         #Cargo las imágenes como números
-        self.load_numbers_training(imagesTraining)
-        self.load_numbers_test(imagesTesting)
+        self.numbersTraining = self.load_numbers_training(imagesTraining)
+        self.numbersTesting = self.load_numbers_test(imagesTesting)
         
         
     def load_numbers_training(self,imagesTraining):
+        
+        numbersTraining = []
+        
         for img in imagesTraining:
-            self.numbersTraining.append( Number(img))
+            numbersTraining.append( Number(img))
+            
+        return numbersTraining
             
     def load_numbers_test(self,imagesTest):
+        
+        numbersTesting = []
+        
         for img in imagesTest:
-            self.numbersTest.append( Number(img))
+            numbersTesting.append( Number(img))
         
-        
+        return numbersTesting
         
         
     
