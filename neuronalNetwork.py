@@ -14,13 +14,15 @@ class NeuronalNetwork:
         
         # Creo el modelo
         self.model = tf.keras.models.Sequential()
-        
-        
+           
     
-    def layers_construction(self):
+    def layers_construction(self, training_sample = False):
         
         # Aplana la matriz de datos (números)
-        self.model.add(tf.keras.layers.Flatten(input_shape=self.data.images_training[0].shape))
+        if not training_sample:
+            self.model.add(tf.keras.layers.Flatten(input_shape=self.data.images_training[0].shape))
+        else:
+            self.model.add(tf.keras.layers.Flatten(input_shape=self.data.images_training_sample[0].shape))
         
         # 128 neuronas, función activación
         self.model.add(tf.keras.layers.Dense(128,tf.nn.relu))
@@ -32,10 +34,21 @@ class NeuronalNetwork:
         self.model.compile(optimizer = 'adam' , loss = 'sparse_categorical_crossentropy',
               metrics = ['accuracy'])
                        
+    def learn_training_sample(self):
+        
+        self.model.fit(self.data.images_training_sample,self.data.labels_training_sample, epochs=self.epocs)
+    
     def learn(self):
         
         self.model.fit(self.data.images_training,self.data.labels_training, epochs=self.epocs)
+    
+    def evaluate_training_sample(self):
         
+        loss, acc = self.model.evaluate(self.data.images_testing_sample,self.data.labels_testing_sample)
+        print("loss = " , loss , " || acc = ", acc)
+        
+        return (loss,acc)
+    
     def evaluate(self):
         
         loss, acc = self.model.evaluate(self.data.images_testing,self.data.labels_testing)
