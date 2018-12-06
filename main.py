@@ -1,9 +1,17 @@
-from data import Dataset
 from neuronalNetwork import NeuronalNetwork
 
-network = NeuronalNetwork('./archivos',5)
+num_epocs = 6
+
+network = NeuronalNetwork('./files',num_epocs)
+
+#network.load_model('./models/multilayer_perceptron_' + repr(num_epocs) +'e.model')
 
 network.layers_construction()
+
 network.learn()
 
-network.data.print_numbber(network.data.images_testing[63])
+network.evaluate()
+
+#network.model.summary()
+
+#network.save_model('./models/multilayer_perceptron_' + repr(num_epocs) +'e.model')
