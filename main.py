@@ -1,23 +1,40 @@
 from neuronalNetwork import NeuronalNetwork
-from convolutionNetwork import ConvolutionNetwork
-from multilayer_perceptron import MultilayerNetwork
+from convolutionalNetwork import ConvolutionalNetwork
+from multilayer_perceptron import MultilayerPerceptron
+
+     
+# Parameters
+############################
+
+num_epocs = 30
+
+num_dense = 512
+
+load_data = True
+
+save_data = False
+
+############################
 
 
-num_epocs = 25
+network = ConvolutionalNetwork('./files', num_epocs, 'ConvolutionalNetwork')
+#network = MultilayerPerceptron('./files', num_epocs, 'ConvolutionalNetwork')
 
-num_dense = 256
+if load_data: 
+    
+    network.load_model(num_epocs, num_dense)
+     
+else:
 
-network = ConvolutionNetwork('./files',num_epocs)
+    network.layers_construction()
 
-#network.load_model('./models/convolutional_network/convolutional_network_' + repr(num_dense) + 'n_' + repr(num_epocs) +'e.model')
+    network.learn()
 
-network.layers_construction()
-
-network.learn()
 
 network.evaluate()
 
 network.model.summary()
 
-network.save_model('./models/convolutional_network/convolutional_network_' + repr(num_dense) + 'n_' + repr(num_epocs) +'e.model')
+if save_data:
+    network.save_model(num_epocs, num_dense)
 

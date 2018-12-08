@@ -1,25 +1,13 @@
-from data import Dataset
-from tensorflow.python.keras.models import load_model
+from neuronalNetwork import NeuronalNetwork
 from keras.layers import Dense,Flatten, Dropout
-from keras.models import Sequential
 from keras.optimizers import RMSprop
+from tensorflow.python.keras.models import load_model
 
-
-class MultilayerNetwork:
+class MultilayerPerceptron(NeuronalNetwork):
     
-    def __init__(self, data_source,_epocs):
-        
-        # Número de épocas
-        self.epocs = _epocs
-        
-        # Número de neuronas de salida
-        self.num_classes = 10
-        
-        # Cargo los datos
-        self.data = Dataset(data_source)
-        
-        # Creo el modelo
-        self.model = Sequential()
+    def __init__(self, data_source,epocs, neuronal_network_type):
+        super(MultilayerPerceptron, self).__init__(data_source,epocs, neuronal_network_type)
+    
      
     def layers_construction(self, training_sample = False):
         
@@ -39,36 +27,17 @@ class MultilayerNetwork:
         self.model.add(Dense(self.num_classes, activation='softmax'))
         
         self.model.compile(optimizer = RMSprop() , loss = 'sparse_categorical_crossentropy',
-              metrics = ['accuracy'])
-                       
-    def learn_training_sample(self):
+        metrics = ['accuracy'])
         
-        self.model.fit(self.data.images_training_sample,self.data.labels_training_sample, epochs=self.epocs)
+    def save_model(self, num_epocs, num_dense, path=None):
+        if path is None:
+            self.model.save('./models/multilayer_perceptron/multilayer_perceptron_' + repr(num_dense) + 'n_' + repr(num_epocs) +'e.model')
+        else:
+            self.model.save(path)
+            
+    def load_model(self, num_epocs, num_dense, path=None):
+        if path is None:
+            self.model = load_model('./models/multilayer_perceptron/multilayer_perceptron_' + repr(num_dense) + 'n_' + repr(num_epocs) +'e.model')
+        else:
+            self.model = load_model(path)
     
-    def learn(self):
-        
-        self.model.fit(self.data.images_training,self.data.labels_training,batch_size=128,epochs=self.epocs)
-    
-    def evaluate_training_sample(self):
-        
-        loss, acc = self.model.evaluate(self.data.images_testing_sample,self.data.labels_testing_sample)
-        print("loss = " , loss , " || acc = ", acc)
-        
-        return (loss,acc)
-    
-    def evaluate(self):
-        
-        loss, acc = self.model.evaluate(self.data.images_testing,self.data.labels_testing)
-        print("loss = " , loss , " || acc = ", acc)
-        
-        return (loss,acc)    
-        
-        
-    def save_model(self, path_model):
-        self.model.save(path_model)
-        
-    def load_model(self, path_model):
-        self.model = load_model(path_model)
-        
-    def model_summary(self):
-        self.model.summary()

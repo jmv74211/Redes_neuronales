@@ -10,7 +10,9 @@ import matplotlib.pyplot as plt
 
 class Dataset:
     
-    def __init__(self, data_source):
+    def __init__(self, data_source, neuronal_network_type):
+        
+        self.neuronal_network_type = neuronal_network_type
         
         self.load_data(data_source)
         
@@ -62,13 +64,24 @@ class Dataset:
          
     def images_array_reshape(self):
         
-        # Training, testing data
-        self.images_training = self.images_training.reshape(self.images_training.shape[0], 28,28,1)
-        self.images_testing = self.images_testing.reshape(self.images_testing.shape[0], 28,28,1)
+        if(self.neuronal_network_type == "ConvolutionalNetwork"):
+
+            # Training, testing data
+            self.images_training = self.images_training.reshape(self.images_training.shape[0], 28,28,1)
+            self.images_testing = self.images_testing.reshape(self.images_testing.shape[0], 28,28,1)
+            
+            # Training, testing sample data
+            self.images_training_sample = self.images_training_sample.reshape(self.images_training_sample.shape[0], 28,28,1)
+            self.images_testing_sample = self.images_testing_sample.reshape(self.images_testing_sample.shape[0], 28,28,1)
         
-        # Training, testing sample data
-        self.images_training_sample = self.images_training_sample.reshape(self.images_training_sample.shape[0], 28,28,1)
-        self.images_testing_sample = self.images_testing_sample.reshape(self.images_testing_sample.shape[0], 28,28,1)
+        else:
+            
+            self.images_training = self.images_training.reshape(self.images_training.shape[0], 28,28)
+            self.images_testing = self.images_testing.reshape(self.images_testing.shape[0], 28,28)
+            
+            # Training, testing sample data
+            self.images_training_sample = self.images_training_sample.reshape(self.images_training_sample.shape[0], 28,28)
+            self.images_testing_sample = self.images_testing_sample.reshape(self.images_testing_sample.shape[0], 28,28)
         
     def array_normalize(self,_axis):
         
