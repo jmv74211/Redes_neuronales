@@ -1,6 +1,8 @@
 from data import Dataset
-import tensorflow as tf
 from tensorflow.python.keras.models import load_model
+from keras.layers import Dense,Flatten, Dropout
+from keras.models import Sequential
+
 
 class NeuronalNetwork:
     
@@ -9,27 +11,32 @@ class NeuronalNetwork:
         # Número de épocas
         self.epocs = _epocs
         
+        # Número de neuronas de salida
+        self.num_classes = 10
+        
         # Cargo los datos
         self.data = Dataset(data_source)
         
         # Creo el modelo
-        self.model = tf.keras.models.Sequential()
+        self.model = Sequential()
            
     
     def layers_construction(self, training_sample = False):
         
         # Aplana la matriz de datos (números)
         if not training_sample:
-            self.model.add(tf.keras.layers.Flatten(input_shape=self.data.images_training[0].shape))
+            self.model.add(Flatten(input_shape=self.data.images_training[0].shape))
         else:
-            self.model.add(tf.keras.layers.Flatten(input_shape=self.data.images_training_sample[0].shape))
-        
-        # 128 neuronas, función activación
-        self.model.add(tf.keras.layers.Dense(128,tf.nn.relu))
-        self.model.add(tf.keras.layers.Dense(128,tf.nn.relu))
+            self.model.add(Flatten(input_shape=self.data.images_training_sample[0].shape))
+            
+        # 512 neuronas, función activación
+        self.model.add(Dense(512, activation='relu'))
+        self.model.add(Dropout(0.2))
+        self.model.add(Dense(256, activation='relu'))
+        self.model.add(Dropout(0.2))
         
         # Capa de salida
-        self.model.add(tf.keras.layers.Dense(10,tf.nn.softmax))
+        self.model.add(Dense(self.num_classes, activation='softmax'))
         
         self.model.compile(optimizer = 'adam' , loss = 'sparse_categorical_crossentropy',
               metrics = ['accuracy'])

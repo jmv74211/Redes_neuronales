@@ -1,11 +1,15 @@
 from neuronalNetwork import NeuronalNetwork
+from convolutionNetwork import ConvolutionNetwork
+from multilayer_perceptron import MultilayerNetwork
 
 
 num_epocs = 25
 
-network = NeuronalNetwork('./files',num_epocs)
+num_dense = 256
 
-#network.load_model('./models/multilayer_perceptron/multilayer_perceptron_' + repr(num_epocs) +'e.model')
+network = ConvolutionNetwork('./files',num_epocs)
+
+#network.load_model('./models/convolutional_network/convolutional_network_' + repr(num_dense) + 'n_' + repr(num_epocs) +'e.model')
 
 network.layers_construction()
 
@@ -15,4 +19,5 @@ network.evaluate()
 
 network.model.summary()
 
-network.save_model('./models/multilayer_perceptron/multilayer_perceptron_' + repr(num_epocs) +'e.model')
+network.save_model('./models/convolutional_network/convolutional_network_' + repr(num_dense) + 'n_' + repr(num_epocs) +'e.model')
+
