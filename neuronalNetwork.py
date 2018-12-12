@@ -34,13 +34,13 @@ class NeuronalNetwork(ABC):
     @abstractmethod   
     def load_model(self, num_epocs, num_dense, path=None): pass    
                   
-    def learn_training_sample(self, _batch_size=None):
+    def learn_training_sample(self, batch_size=None):
         
-        self.model.fit(self.data.images_training_sample, self.data.labels_training_sample, epochs=self.epocs, batch_size=_batch_size)
+        self.model.fit(self.data.images_training_sample, self.data.labels_training_sample, epochs=self.epocs, batch_size=batch_size)
     
-    def learn(self, _batch_size=None):
+    def learn(self, batch_size=None):
         
-        self.model.fit(self.data.images_training, self.data.labels_training, epochs=self.epocs, batch_size=_batch_size)
+        self.model.fit(self.data.images_training, self.data.labels_training, epochs=self.epocs, batch_size=batch_size)
     
     def evaluate_training_sample(self):
         
