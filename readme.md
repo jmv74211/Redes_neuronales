@@ -24,6 +24,7 @@
   - [4.2 Red neuronal convolucional (CNN)](#42-red-neuronal-convolucional-cnn)
   - [4.3 Red neuronal recurrente (RNN)](#43-red-neuronal-recurrente-rnn)
 - [5. Diseño de la aplicación](#5-dise%C3%B1o-de-la-aplicaci%C3%B3n)
+  - [*](#)
 - [6. Descripción del modelo](#6-descripci%C3%B3n-del-modelo)
 - [7. Implementación](#7-implementaci%C3%B3n)
   - [7.1 Red neuronal profunda (DNN)](#71-red-neuronal-profunda-dnn)
@@ -32,8 +33,8 @@
     - [7.2 Red neuronal convolucional (CNN)](#72-red-neuronal-convolucional-cnn)
       - [7.2.1 Búsqueda y experimentos de parámetros](#721-b%C3%BAsqueda-y-experimentos-de-par%C3%A1metros)
       - [7.2.2 Descripción del algoritmo](#722-descripci%C3%B3n-del-algoritmo)
-  - [8. Ejecución de la aplicación](#8-ejecuci%C3%B3n-de-la-aplicaci%C3%B3n)
-  - [9. Bibliografía](#9-bibliograf%C3%ADa)
+- [8. Ejecución de la aplicación](#8-ejecuci%C3%B3n-de-la-aplicaci%C3%B3n)
+- [9. Bibliografía](#9-bibliograf%C3%ADa)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -545,7 +546,7 @@ results\convolutional_network\best.
 También se adjunta otros modelos empleados con los que se ha obtenido errores 0.78%,
 0.75%, 0.66%... empleando diferentes parámetros.
 
-## 8. Ejecución de la aplicación
+# 8. Ejecución de la aplicación
 
 Para poder ejecutar esta aplicación, es necesario tener instalado lo siguiente:
 
@@ -580,7 +581,7 @@ de google drive donde he compartido todo este material.
 https://drive.google.com/drive/folders/10wx8bWffJTm7dFQGK215xxXaYe27mv94?usp=sharing
 
 
-## 9. Bibliografía
+# 9. Bibliografía
 
 [1] Ricardo Guerrero Gomez-O, Frameworks de Deep Learning, disponible en
 https://medium.com/@ricardo.guerrero/frameworks-de-deep-learning-un-repaso-antes-de-acabar-el-
