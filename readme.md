@@ -24,7 +24,6 @@
   - [4.2 Red neuronal convolucional (CNN)](#42-red-neuronal-convolucional-cnn)
   - [4.3 Red neuronal recurrente (RNN)](#43-red-neuronal-recurrente-rnn)
 - [5. Diseño de la aplicación](#5-dise%C3%B1o-de-la-aplicaci%C3%B3n)
-  - [*](#)
 - [6. Descripción del modelo](#6-descripci%C3%B3n-del-modelo)
 - [7. Implementación](#7-implementaci%C3%B3n)
   - [7.1 Red neuronal profunda (DNN)](#71-red-neuronal-profunda-dnn)
